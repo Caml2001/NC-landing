@@ -35,7 +35,7 @@ function UseCasesSlider() {
   )
 }
 
-function ChatPreview() {
+function ChatPreview({ variant = 'card' }: { variant?: 'card' | 'inline' }) {
   type Msg = { side: 'left' | 'right'; text: string; green?: boolean }
   type Step =
     | { type: 'typing'; side: 'left' | 'right' }
@@ -97,8 +97,9 @@ function ChatPreview() {
   }
   const showTyping = steps[stepIndex]?.type === 'typing' ? steps[stepIndex].side : null
 
+  const wrapperClass = variant === 'card' ? 'chat-card' : 'chat-inline'
   return (
-    <div className="chat-card" aria-label="Vista previa de chat">
+    <div className={wrapperClass} aria-label="Vista previa de chat">
       {revealed.map((m, idx) => (
         <div key={idx} className={`chat-row ${m.side}`}>
           <div className={`bubble ${m.green ? 'green' : ''}`}>{m.text}</div>
@@ -163,6 +164,9 @@ function App() {
                   <img className="icon-img sm" src="/icons/eye-open.svg" alt="Claro" />
                   <span>Mensajes claros</span>
                 </div>
+              </div>
+              <div className="hero-mobile-bubbles">
+                <ChatPreview variant="inline" />
               </div>
             </div>
             <div className="hero-visual">
