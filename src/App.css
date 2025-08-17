@@ -315,10 +315,21 @@
 .pricing-side h3 { margin: 0.2rem 0; }
 
 /* FAQs */
-.faq-list { display: grid; gap: 0; }
-.faq-list details { border: none; border-top: 1px solid color-mix(in oklab, currentColor, transparent 90%); border-radius: 0; padding: 0.75rem 0; background: transparent; }
-.faq-list summary { cursor: pointer; font-weight: 600; }
-.faq-list p { margin: 0.5rem 0 0; color: color-mix(in oklab, currentColor, transparent 45%); }
+.faq-list { display: grid; gap: 0.75rem; }
+@media (min-width: 900px) { .faq-list { grid-template-columns: 1fr 1fr; } }
+.faq { border: 1px solid color-mix(in oklab, currentColor, transparent 86%); border-radius: 12px; background: color-mix(in oklab, canvas, transparent 10%); padding: 0; overflow: hidden; transition: border-color 200ms, background 200ms; }
+.faq:hover { border-color: color-mix(in oklab, currentColor, transparent 70%); }
+.faq[open] { background: color-mix(in oklab, canvas, transparent 6%); }
+.faq summary { list-style: none; cursor: pointer; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; padding: 0.9rem 0.9rem 0.9rem 0.75rem; position: relative; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq-icon { width: 18px; height: 18px; opacity: 0.8; }
+.faq-title { flex: 1; }
+.faq summary::after { content: ""; width: 16px; height: 16px; background: no-repeat center/contain url('/icons/chevron-down.svg'); opacity: 0.7; transform: rotate(0deg); transition: transform 200ms; }
+.faq[open] summary::after { transform: rotate(180deg); }
+.faq-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 260ms ease; padding: 0 0.9rem; }
+.faq[open] .faq-content { grid-template-rows: 1fr; }
+.faq-content > div { overflow: hidden; }
+.faq-content p { margin: 0.5rem 0 0.9rem; color: color-mix(in oklab, currentColor, transparent 45%); }
 
 /* Buttons */
 .btn {
@@ -348,17 +359,28 @@
 .btn-outline:hover { border-color: color-mix(in oklab, currentColor, transparent 50%); }
 
 /* Footer */
-.footer {
-  margin-top: auto;
-  border-top: 1px solid color-mix(in oklab, currentColor, transparent 85%);
-}
-.footer-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 0.25rem;
-}
+.footer { margin-top: auto; background: color-mix(in oklab, canvas, transparent 3%); border-top: 1px solid color-mix(in oklab, currentColor, transparent 85%); }
+.footer-top { display: grid; gap: 1.25rem; padding: 2.25rem 0.25rem; align-items: start; }
+@media (min-width: 900px) { .footer-top { grid-template-columns: 1.1fr 1fr 0.9fr; gap: 2.25rem; } }
+.footer-col { display: grid; gap: 0.6rem; }
+.brand-col { max-width: 560px; }
+.links-col { gap: 1rem; }
+@media (min-width: 700px) { .links-col { grid-template-columns: 1fr 1fr; } }
+.footer-brand { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 800; }
+.footer-tagline { opacity: 0.85; font-size: 1.05rem; margin: 0.25rem 0 0; }
+.footer-desc { opacity: 0.7; margin: 0; }
+.footer-heading { font-weight: 800; opacity: 0.9; margin-bottom: 0.25rem; }
+.footer-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.4rem; }
+.footer-list a { color: inherit; opacity: 0.85; padding: 4px 0; display: inline-block; }
+.footer-list a:hover { opacity: 1; }
+.cta-col { align-content: start; }
+@media (min-width: 900px) { .cta-col { justify-self: end; text-align: right; } }
+.cta-col .btn-lg { height: 48px; }
+.support-line { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 0.6rem; opacity: 0.85; }
+.support-icon { width: 18px; height: 18px; }
+.footer-meta { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 1rem 0.25rem 2rem; opacity: 0.85; font-size: 0.95rem; border-top: 1px solid color-mix(in oklab, currentColor, transparent 90%); }
+.footer-note { opacity: 0.75; }
+@media (max-width: 560px) { .footer-meta { flex-direction: column; align-items: flex-start; gap: 0.25rem; } }
 
 /* Mobile tweaks */
 @media (max-width: 560px) {

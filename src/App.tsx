@@ -265,7 +265,7 @@ function App() {
           </div>
         </section>
 
-        <section className="section privacy">
+        <section id="privacy" className="section privacy">
           <div className="container">
             <div className="section-header">
               <span className="section-eyebrow">Tu información importa</span>
@@ -336,42 +336,85 @@ function App() {
               <h2 className="section-title">Preguntas frecuentes</h2>
             </div>
             <div className="faq-list">
-              <details>
-                <summary>¿Necesito instalar algo?</summary>
-                <p>No. HeyLuni funciona directamente en tu WhatsApp.</p>
+              <details className="faq">
+                <summary>
+                  <img className="faq-icon" src="/icons/circle-info.svg" alt="" aria-hidden />
+                  <span className="faq-title">¿Necesito instalar algo?</span>
+                </summary>
+                <div className="faq-content">
+                  <div>
+                    <p>No. HeyLuni funciona directamente en tu WhatsApp.</p>
+                  </div>
+                </div>
               </details>
-              <details>
-                <summary>¿Tiene costo?</summary>
-                <p>Durante la beta, usar HeyLuni es gratis.</p>
+              <details className="faq">
+                <summary>
+                  <img className="faq-icon" src="/icons/circle-info.svg" alt="" aria-hidden />
+                  <span className="faq-title">¿Tiene costo?</span>
+                </summary>
+                <div className="faq-content">
+                  <div>
+                    <p>Durante la beta, usar HeyLuni es gratis.</p>
+                  </div>
+                </div>
               </details>
-              <details>
-                <summary>¿Puedo programar recordatorios?</summary>
-                <p>Sí. Indica el día y la hora y HeyLuni te escribe.</p>
+              <details className="faq">
+                <summary>
+                  <img className="faq-icon" src="/icons/circle-info.svg" alt="" aria-hidden />
+                  <span className="faq-title">¿Puedo programar recordatorios?</span>
+                </summary>
+                <div className="faq-content">
+                  <div>
+                    <p>Sí. Indica el día y la hora y HeyLuni te escribe.</p>
+                  </div>
+                </div>
               </details>
             </div>
           </div>
         </section>
 
-        <section className="band callout">
-          <div className="container callout-inner">
-            <div className="callout-copy">
-              <span className="section-eyebrow">Listo en segundos</span>
-              <h3>Prueba HeyLuni ahora</h3>
-              <p className="lead">Sin registro, sin descargas. Abre el chat y pide lo que necesites.</p>
-            </div>
-            <a className="btn btn-primary btn-lg" href={WA_LINK} target="_blank" rel="noopener noreferrer">
-              Hablar en WhatsApp
-            </a>
-          </div>
-        </section>
+        
       </main>
 
       <footer className="footer">
-        <div className="container footer-inner">
+        <div className="container footer-top">
+          <div className="footer-col brand-col">
+            <div className="footer-brand">
+              <span className="brand-mark" aria-hidden>💬</span>
+              <span className="brand-text">HeyLuni</span>
+            </div>
+            <p className="footer-tagline">Tu asistente personal con IA en WhatsApp.</p>
+            <p className="footer-desc">Ideas, recordatorios y redacción al instante. 100% gratis en beta.</p>
+          </div>
+          <div className="footer-col links-col">
+            <div className="footer-group">
+              <div className="footer-heading">Producto</div>
+              <ul className="footer-list">
+                <li><a href="#how">Cómo funciona</a></li>
+                <li><a href="#usecases">Casos de uso</a></li>
+                <li><a href="#pricing">Precio</a></li>
+                <li><a href="#faqs">FAQs</a></li>
+              </ul>
+            </div>
+            <div className="footer-group">
+              <div className="footer-heading">Recursos</div>
+              <ul className="footer-list">
+                <li><a href="#privacy">Privacidad</a></li>
+                <li><a href={WA_LINK} target="_blank" rel="noopener noreferrer">Soporte por WhatsApp</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="footer-col cta-col">
+            <a className="btn btn-primary btn-lg" href={WA_LINK} target="_blank" rel="noopener noreferrer">Hablar en WhatsApp</a>
+            <div className="support-line">
+              <img className="support-icon" src="/icons/headset.svg" alt="" aria-hidden />
+              <span>Soporte 24/7 en WhatsApp</span>
+            </div>
+          </div>
+        </div>
+        <div className="container footer-meta">
           <span>© {new Date().getFullYear()} HeyLuni</span>
-          <a className="btn btn-outline" href={WA_LINK} target="_blank" rel="noopener noreferrer">
-            Abrir WhatsApp
-          </a>
+          <span className="footer-note">Beta • 100% gratis</span>
         </div>
       </footer>
     </div>
