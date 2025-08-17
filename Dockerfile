@@ -21,5 +21,5 @@ COPY --from=build /app/dist ./dist
 
 # Railway provides $PORT; default to 3000 locally
 EXPOSE 3000
-CMD ["serve", "-s", "dist", "-l", "${PORT:-3000}"]
-
+# Use shell form so ${PORT} env var is expanded at runtime by the shell
+CMD sh -c 'serve -s dist -l ${PORT:-3000}'
