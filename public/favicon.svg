@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="HeyLuni icon">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#25D366"/>
+      <stop offset="1" stop-color="#128C7E"/>
+    </linearGradient>
+  </defs>
+  <g fill="none">
+    <path d="M8 10a14 14 0 0 1 14-14h20a14 14 0 0 1 14 14v18a14 14 0 0 1-14 14H27l-11 8c-1 .7-2.3-.2-2-1.4l2.6-8.6A14 14 0 0 1 8 28V10Z" transform="translate(0 8)" fill="url(#g)"/>
+    <path d="M24 20v18h10" stroke="#0b2316" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
