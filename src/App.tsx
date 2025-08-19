@@ -130,7 +130,7 @@ function App() {
       <header className="nav">
         <div className="container nav-inner">
           <div className="brand">
-            <span className="brand-mark" aria-hidden>💬</span>
+            <img className="logo-img" src="/images/logo.png" alt="HeyLuni" />
             <span className="brand-text">HeyLuni</span>
           </div>
           <nav className="nav-links">
@@ -177,6 +177,10 @@ function App() {
             </div>
             <div className="hero-visual">
               <ChatPreview />
+            </div>
+            
+            <div className="hero-mobile-luni">
+              <img className="luni-illo" src="/images/sentado.png" alt="Luni" />
             </div>
           </div>
         </section>
@@ -328,6 +332,7 @@ function App() {
               <aside className="pricing-side">
                 <h3>Construyamos HeyLuni juntos</h3>
                 <p className="lead">Tu feedback guía el producto. ¿Qué te gustaría que haga?</p>
+                <img className="pricing-illo" src="/images/aconsejando.png" alt="Luni aconsejando" />
               </aside>
             </div>
           </div>
@@ -388,9 +393,9 @@ function App() {
             <div className="footer-top">
               <div className="footer-col brand-col">
                 <div className="footer-brand">
-                  <span className="brand-mark" aria-hidden>💬</span>
-                  <span className="brand-text">HeyLuni</span>
-                </div>
+              <img className="logo-img" src="/images/logo.png" alt="HeyLuni" />
+              <span className="brand-text">HeyLuni</span>
+            </div>
                 <p className="footer-tagline">Tu asistente personal con IA en WhatsApp.</p>
                 <p className="footer-desc">Ideas, recordatorios y redacción al instante. 100% gratis en beta.</p>
               </div>

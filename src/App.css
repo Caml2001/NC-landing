@@ -41,6 +41,9 @@
 }
 .brand-mark { font-size: 1.25rem; }
 .brand-text { font-size: 1.05rem; }
+/* Logo */
+.logo-img { height: 22px; width: auto; display: block; }
+@media (min-width: 900px) { .logo-img { height: 24px; } }
 
 /* Hero */
 .hero {
@@ -102,6 +105,24 @@
 /* Chat mock */
 .hero-visual { display: none; }
 @media (min-width: 900px) { .hero-visual { display: block; } }
+.hero-visual { text-align: center; }
+/* La ilustración del hero en desktop se eliminó; mantenemos solo el chat */
+.hero-mobile-luni { display: none; }
+@media (max-width: 899px) { .hero-mobile-luni { display: block; text-align: center; margin-top: 0.75rem; }
+  .hero-mobile-luni .luni-illo { width: 160px; margin: 0.5rem auto 0; display: block; }
+}
+
+/* Luni en Pricing (solo desktop) */
+.pricing-illo { display: none; }
+@media (min-width: 900px) {
+  .pricing-illo {
+    display: block;
+    width: clamp(180px, 28vw, 260px);
+    max-width: 100%;
+    margin-top: 0.5rem;
+    filter: drop-shadow(0 10px 26px color-mix(in oklab, black, transparent 92%));
+  }
+}
 .chat-card {
   border: 1px solid color-mix(in oklab, currentColor, transparent 85%);
   background: color-mix(in oklab, canvas, transparent 10%);
@@ -408,6 +429,7 @@
 @media (min-width: 900px) { .cta-col { justify-self: end; text-align: right; } }
 
 .footer-brand { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 800; }
+.footer .logo-img { height: 24px; }
 .footer-tagline { opacity: 0.85; font-size: 1.05rem; margin: 0.25rem 0 0; }
 .footer-desc { opacity: 0.7; margin: 0; }
 .footer-heading { font-weight: 800; opacity: 0.9; margin-bottom: 0.25rem; }
