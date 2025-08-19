@@ -35,7 +35,7 @@ function UseCasesSlider() {
   )
 }
 
-function ChatPreview({ variant = 'card' }: { variant?: 'card' | 'inline' }) {
+function ChatPreview({ variant = 'card', mode = 'animated' }: { variant?: 'card' | 'inline'; mode?: 'animated' | 'static' }) {
   type Msg = { side: 'left' | 'right'; text: string; green?: boolean }
   type Step =
     | { type: 'typing'; side: 'left' | 'right' }
@@ -65,6 +65,7 @@ function ChatPreview({ variant = 'card' }: { variant?: 'card' | 'inline' }) {
   const [stepIndex, setStepIndex] = useState(0)
 
   useEffect(() => {
+    if (mode === 'static') return
     let cancelled = false
     const run = () => {
       const step = steps[stepIndex]
@@ -87,15 +88,20 @@ function ChatPreview({ variant = 'card' }: { variant?: 'card' | 'inline' }) {
       cancelled = true
       cleanup && cleanup()
     }
-  }, [stepIndex, steps])
+  }, [stepIndex, steps, mode])
 
   // Render: muestra todos los mensajes ya revelados; si el paso actual es typing, muéstralo al final
   const revealed: Msg[] = []
-  for (let i = 0; i <= stepIndex && i < steps.length; i++) {
-    const st = steps[i]
-    if (st.type === 'message') revealed.push(st)
+  if (mode === 'static') {
+    // en modo estático mostramos todos los mensajes sin indicador de escritura
+    messages.forEach((m) => revealed.push(m))
+  } else {
+    for (let i = 0; i <= stepIndex && i < steps.length; i++) {
+      const st = steps[i]
+      if (st.type === 'message') revealed.push(st)
+    }
   }
-  const showTyping = steps[stepIndex]?.type === 'typing' ? steps[stepIndex].side : null
+  const showTyping = mode === 'animated' && steps[stepIndex]?.type === 'typing' ? steps[stepIndex].side : null
 
   const wrapperClass = variant === 'card' ? 'chat-card' : 'chat-inline'
   return (
@@ -144,6 +150,9 @@ function App() {
           <div className="container hero-inner">
             <div className="hero-copy">
               <span className="eyebrow">WhatsApp + IA</span>
+              <div className="hero-mobile-bubbles">
+                <ChatPreview variant="inline" mode="static" />
+              </div>
               <h1>Tu asistente personal, directo en WhatsApp</h1>
               <p className="subtitle">Ideas, recordatorios, resúmenes y redacción. Respuestas claras en segundos, 24/7.</p>
               <div className="badges"><span className="badge badge-free">100% gratis</span></div>
@@ -164,9 +173,6 @@ function App() {
                   <img className="icon-img sm" src="/icons/eye-open.svg" alt="Claro" />
                   <span>Mensajes claros</span>
                 </div>
-              </div>
-              <div className="hero-mobile-bubbles">
-                <ChatPreview variant="inline" />
               </div>
             </div>
             <div className="hero-visual">
@@ -377,44 +383,44 @@ function App() {
       </main>
 
       <footer className="footer">
-        <div className="container footer-top">
-          <div className="footer-col brand-col">
-            <div className="footer-brand">
-              <span className="brand-mark" aria-hidden>💬</span>
-              <span className="brand-text">HeyLuni</span>
+        <div className="container">
+          <div className="footer-surface">
+            <div className="footer-top">
+              <div className="footer-col brand-col">
+                <div className="footer-brand">
+                  <span className="brand-mark" aria-hidden>💬</span>
+                  <span className="brand-text">HeyLuni</span>
+                </div>
+                <p className="footer-tagline">Tu asistente personal con IA en WhatsApp.</p>
+                <p className="footer-desc">Ideas, recordatorios y redacción al instante. 100% gratis en beta.</p>
+              </div>
+              <div className="footer-col links-col">
+                <div className="footer-group">
+                  <div className="footer-heading">Producto</div>
+                  <ul className="footer-list">
+                    <li><a href="#how">Cómo funciona</a></li>
+                    <li><a href="#usecases">Casos de uso</a></li>
+                    <li><a href="#pricing">Precio</a></li>
+                    <li><a href="#faqs">FAQs</a></li>
+                  </ul>
+                </div>
+                <div className="footer-group">
+                  <div className="footer-heading">Recursos</div>
+                  <ul className="footer-list">
+                    <li><a href="#privacy">Privacidad</a></li>
+                    <li><a href={WA_LINK} target="_blank" rel="noopener noreferrer">Soporte por WhatsApp</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div className="footer-col cta-col">
+                <a className="btn btn-primary btn-lg" href={WA_LINK} target="_blank" rel="noopener noreferrer">Hablar en WhatsApp</a>
+                <div className="support-line">
+                  <img className="support-icon" src="/icons/headset.svg" alt="" aria-hidden />
+                  <span>Soporte 24/7 en WhatsApp</span>
+                </div>
+              </div>
             </div>
-            <p className="footer-tagline">Tu asistente personal con IA en WhatsApp.</p>
-            <p className="footer-desc">Ideas, recordatorios y redacción al instante. 100% gratis en beta.</p>
           </div>
-          <div className="footer-col links-col">
-            <div className="footer-group">
-              <div className="footer-heading">Producto</div>
-              <ul className="footer-list">
-                <li><a href="#how">Cómo funciona</a></li>
-                <li><a href="#usecases">Casos de uso</a></li>
-                <li><a href="#pricing">Precio</a></li>
-                <li><a href="#faqs">FAQs</a></li>
-              </ul>
-            </div>
-            <div className="footer-group">
-              <div className="footer-heading">Recursos</div>
-              <ul className="footer-list">
-                <li><a href="#privacy">Privacidad</a></li>
-                <li><a href={WA_LINK} target="_blank" rel="noopener noreferrer">Soporte por WhatsApp</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="footer-col cta-col">
-            <a className="btn btn-primary btn-lg" href={WA_LINK} target="_blank" rel="noopener noreferrer">Hablar en WhatsApp</a>
-            <div className="support-line">
-              <img className="support-icon" src="/icons/headset.svg" alt="" aria-hidden />
-              <span>Soporte 24/7 en WhatsApp</span>
-            </div>
-          </div>
-        </div>
-        <div className="container footer-meta">
-          <span>© {new Date().getFullYear()} HeyLuni</span>
-          <span className="footer-note">Beta • 100% gratis</span>
         </div>
       </footer>
     </div>

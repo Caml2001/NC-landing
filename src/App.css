@@ -149,18 +149,27 @@
 .chat-inline .chat-row { margin: 4px 0; }
 .chat-inline .bubble { font-size: 0.85rem; padding: 6px 8px; border-radius: 10px; }
 
+/* En móvil, las burbujas del hero no deben animarse */
+@media (max-width: 899px) {
+  .hero-mobile-bubbles .bubble { animation: none !important; }
+  /* Ajuste de espaciado cuando las burbujas van sobre el título */
+  /* Nota: márgenes específicos se fijan en los breakpoints inferiores para evitar overrides posteriores */
+  /* Ocultar label en móvil */
+  .eyebrow { display: none !important; }
+}
+
 @media (max-width: 560px) {
-  .hero { padding: 7rem 0 5rem; min-height: 85svh; display: grid; }
-  .hero-inner { align-items: start; }
+  .hero { padding: 2rem 0 5rem; min-height: 66svh; display: grid; }
+  .hero-inner { align-items: center; }
   .hero-copy { padding-top: 0; padding-bottom: 0; }
-  .hero-mobile-bubbles { position: static; margin-top: 0.5rem; max-width: 100%; }
+  .hero-mobile-bubbles { position: static; margin-top: -5rem; margin-bottom: 1.5rem; max-width: 100%; }
 }
 
 @media (min-width: 561px) and (max-width: 899px) {
-  .hero { min-height: 75svh; }
-  .hero-inner { align-items: start; }
+  .hero { padding: 2.5rem 0 5rem; min-height: 66svh; }
+  .hero-inner { align-items: center; }
   .hero-copy { padding-bottom: 0; }
-  .hero-mobile-bubbles { position: static; margin-top: 0.5rem; max-width: 100%; }
+  .hero-mobile-bubbles { position: static; margin-top: -4.5rem; margin-bottom: 1.5rem; max-width: 100%; }
 }
 
 /* Features */
@@ -359,28 +368,66 @@
 .btn-outline:hover { border-color: color-mix(in oklab, currentColor, transparent 50%); }
 
 /* Footer */
-.footer { margin-top: auto; background: color-mix(in oklab, canvas, transparent 3%); border-top: 1px solid color-mix(in oklab, currentColor, transparent 85%); }
-.footer-top { display: grid; gap: 1.25rem; padding: 2.25rem 0.25rem; align-items: start; }
-@media (min-width: 900px) { .footer-top { grid-template-columns: 1.1fr 1fr 0.9fr; gap: 2.25rem; } }
+.footer {
+  margin-top: auto;
+  background: transparent;
+  border-top: none;
+}
+/* Surface con esquinas redondeadas */
+.footer-surface {
+  margin: 1rem 0 1.5rem;
+  padding: 1.25rem 1rem calc(1.5rem + env(safe-area-inset-bottom));
+  background: color-mix(in oklab, canvas, transparent 6%);
+  border: 1px solid color-mix(in oklab, currentColor, transparent 88%);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px color-mix(in oklab, black, transparent 94%);
+}
+.footer-top {
+  display: grid;
+  gap: 1.25rem;
+  padding: 0;
+  align-items: start;
+  grid-template-areas:
+    "brand"
+    "cta"
+    "links";
+}
+/* Reordenar en desktop a 3 columnas */
+@media (min-width: 900px) {
+  .footer-top {
+    grid-template-columns: 1.1fr 1fr 0.9fr;
+    grid-template-areas: "brand links cta";
+    gap: 2.25rem;
+  }
+}
 .footer-col { display: grid; gap: 0.6rem; }
-.brand-col { max-width: 560px; }
-.links-col { gap: 1rem; }
+.brand-col { grid-area: brand; max-width: 560px; }
+.links-col { grid-area: links; gap: 1rem; }
 @media (min-width: 700px) { .links-col { grid-template-columns: 1fr 1fr; } }
+.cta-col { grid-area: cta; align-content: start; }
+@media (min-width: 900px) { .cta-col { justify-self: end; text-align: right; } }
+
 .footer-brand { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 800; }
 .footer-tagline { opacity: 0.85; font-size: 1.05rem; margin: 0.25rem 0 0; }
 .footer-desc { opacity: 0.7; margin: 0; }
 .footer-heading { font-weight: 800; opacity: 0.9; margin-bottom: 0.25rem; }
 .footer-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.4rem; }
-.footer-list a { color: inherit; opacity: 0.85; padding: 4px 0; display: inline-block; }
+/* Mejorar altura táctil y legibilidad de enlaces en móvil */
+.footer-list a { color: inherit; opacity: 0.85; padding: 8px 0; display: inline-block; }
 .footer-list a:hover { opacity: 1; }
-.cta-col { align-content: start; }
-@media (min-width: 900px) { .cta-col { justify-self: end; text-align: right; } }
+
+/* CTA: ancho completo en móvil para facilitar toque */
+.cta-col .btn { width: 100%; }
 .cta-col .btn-lg { height: 48px; }
 .support-line { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 0.6rem; opacity: 0.85; }
 .support-icon { width: 18px; height: 18px; }
-.footer-meta { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 1rem 0.25rem 2rem; opacity: 0.85; font-size: 0.95rem; border-top: 1px solid color-mix(in oklab, currentColor, transparent 90%); }
-.footer-note { opacity: 0.75; }
-@media (max-width: 560px) { .footer-meta { flex-direction: column; align-items: flex-start; gap: 0.25rem; } }
+
+/* Separadores sutiles entre bloques en móvil */
+@media (max-width: 899px) {
+  .links-col { border-top: 1px solid color-mix(in oklab, currentColor, transparent 90%); padding-top: 0.75rem; }
+  .cta-col { border-top: 1px solid color-mix(in oklab, currentColor, transparent 90%); padding-top: 0.75rem; }
+}
+
 
 /* Mobile tweaks */
 @media (max-width: 560px) {
