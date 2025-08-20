@@ -187,9 +187,7 @@ function App() {
               <ChatPreview />
             </div>
             
-            <div className="hero-mobile-luni">
-              <img className="luni-illo" src="/images/sentado.png" alt="Luni" />
-            </div>
+
           </div>
         </section>
 
