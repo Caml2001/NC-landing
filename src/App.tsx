@@ -155,7 +155,15 @@ function App() {
               </div>
               <h1>Tu asistente personal, directo en WhatsApp</h1>
               <p className="subtitle">Ideas, recordatorios, resúmenes y redacción. Respuestas claras en segundos, 24/7.</p>
-              <div className="badges"><span className="badge badge-free">100% gratis</span></div>
+              <div className="badges">
+                <span
+                  className="badge badge-free"
+                  aria-label="100% gratis durante la beta"
+                  title="Durante la beta"
+                >
+                  100% gratis
+                </span>
+              </div>
               <div className="cta-group">
                 <a className="btn btn-primary btn-lg" href={WA_LINK} target="_blank" rel="noopener noreferrer">Hablar ahora en WhatsApp</a>
                 <a className="btn btn-outline btn-lg" href="#how">Ver cómo funciona</a>

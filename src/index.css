@@ -4,8 +4,23 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+
+  /* Theme tokens (dark as base) */
+  --bg: #242424;
+  --text: rgba(255, 255, 255, 0.92);
+  --surface: #2b2b2b;
+  --surface-2: #1a1a1a;
+  --border: color-mix(in oklab, var(--text), transparent 82%);
+  --muted: color-mix(in oklab, var(--text), transparent 45%);
+  --bubble-bg: #2a2a2a;
+  --bubble-fg: rgba(255, 255, 255, 0.95);
+
+  /* Accents */
+  --accent: #25D366; /* primary */
+  --accent-2: #fa4d45; /* subtle coral accent */
+
+  color: var(--text);
+  background-color: var(--bg);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -29,8 +44,13 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  accent-color: #25D366;
+  accent-color: var(--accent);
   overflow-x: hidden;
+}
+
+/* Selection highlight: very soft coral */
+::selection {
+  background: color-mix(in oklab, var(--accent-2), transparent 75%);
 }
 
 h1 {
@@ -64,8 +84,16 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --bg: #ffffff;
+    --text: #213547;
+    --surface: #f3f5f7;
+    --surface-2: #f9f9fb;
+    --border: color-mix(in oklab, #213547, transparent 82%);
+    --muted: color-mix(in oklab, #213547, transparent 45%);
+    --bubble-bg: #f3f5f7;
+    --bubble-fg: #213547;
+    color: var(--text);
+    background-color: var(--bg);
   }
   a:hover {
     color: #747bff;
